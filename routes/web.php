@@ -1,5 +1,11 @@
 <?php
 
+use App\Http\Controllers\Frontend\HomeController;
+
+use App\Http\Controllers\Admin\WebsiteSettingController;
+use App\Http\Controllers\Admin\TestimonialController;
+
+
 Route::redirect('/', '/login');
 Route::get('/home', function () {
     if (session('status')) {
@@ -28,6 +34,27 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // Audit Logs
     Route::resource('audit-logs', 'AuditLogsController', ['except' => ['create', 'store', 'edit', 'update', 'destroy']]);
 
+     Route::resource('products', ProductController::class);
+
+
+    Route::get('website-settings', [WebsiteSettingController::class, 'index'])
+        ->name('website-settings.index');
+
+    Route::post('website-settings', [WebsiteSettingController::class, 'update'])
+        ->name('website-settings.update');
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Testimonials
+    |--------------------------------------------------------------------------
+    */
+    Route::delete('testimonials/destroy', [TestimonialController::class, 'massDestroy'])
+        ->name('testimonials.massDestroy');
+
+    Route::resource('testimonials', TestimonialController::class);
+
+
     
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
@@ -40,3 +67,5 @@ Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 
     }
 });
 
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
