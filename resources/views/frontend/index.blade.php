@@ -1,53 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Real Fragrance World | Premium Attars & Perfumes</title>
-  <meta name="description" content="Luxury attars, perfumes, oud collection, discovery sets and WhatsApp ordering by The Real Fragrance World." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="assets/css/style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>{{ $setting->meta_title ?? 'The Real Fragrance World | Premium Attars & Perfumes' }}</title>
+
+    <meta name="description"
+          content="{{ $setting->meta_description ?? 'Luxury attars, perfumes, oud collection, discovery sets and WhatsApp ordering by The Real Fragrance World.' }}" />
+
+    @if(!empty($setting->meta_keywords))
+        <meta name="keywords" content="{{ $setting->meta_keywords }}">
+    @endif
+
+    @if(!empty($setting->canonical_url))
+        <link rel="canonical" href="{{ $setting->canonical_url }}">
+    @endif
+
+    @if(!empty($setting->og_image_url))
+        <meta property="og:image" content="{{ $setting->og_image_url }}">
+    @endif
+
+    @if(!empty($setting->favicon_url))
+        <link rel="icon" href="{{ $setting->favicon_url }}">
+    @endif
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
 </head>
+
 <body>
-  <div class="topbar">
-    <div class="container topbar-inner">
-      <div class="topbar-left">
-        <span><i class="bi bi-cash-coin"></i> COD Available</span>
-        <span><i class="bi bi-globe2"></i> Wholesale & International Orders</span>
-      </div>
-      <a class="topbar-call" href="https://wa.me/918591114751"><i class="bi bi-whatsapp"></i> +91 85911 14751</a>
+
+    <div class="topbar">
+        <div class="container topbar-inner">
+            <div class="topbar-left">
+                <span>
+                    <i class="bi bi-cash-coin"></i>
+                    COD Available
+                </span>
+
+                <span>
+                    <i class="bi bi-globe2"></i>
+                    Wholesale & International Orders
+                </span>
+            </div>
+
+            @if(!empty($setting->whatsapp_number))
+                <a class="topbar-call"
+                   href="https://wa.me/{{ $setting->whatsapp_number }}"
+                   target="_blank">
+                    <i class="bi bi-whatsapp"></i>
+                    {{ $setting->primary_phone ?? $setting->whatsapp_number }}
+                </a>
+            @endif
+        </div>
     </div>
-  </div>
 
-  <header class="site-header" id="siteHeader">
-    <div class="container header-inner">
-      <a href="#home" class="brand" aria-label="The Real Fragrance World Home">
-        <img src="assets/img/logo.webp" alt="The Real Fragrance World Logo" class="brand-logo" />
-        <span class="brand-copy">
-          <strong>The Real</strong>
-          <strong>Fragrance World</strong>
-          <small>Zahid Tanwar</small>
-        </span>
-      </a>
+    <header class="site-header" id="siteHeader">
+        <div class="container header-inner">
 
-      <nav class="navbar" id="navbar">
-        <a href="#home" class="active">Home</a>
-        <a href="#products">Products</a>
-        <a href="#categories">Categories</a>
-        <a href="#about">About</a>
-        <a href="#why">Why Choose Us</a>
-        <a href="#contact">Contact</a>
-      </nav>
+            <a href="#home" class="brand" aria-label="{{ $setting->website_name ?? 'The Real Fragrance World' }} Home">
 
-      <div class="header-actions">
-        <a href="https://wa.me/918591114751" class="btn btn-dark"><i class="bi bi-whatsapp"></i> Order Now</a>
-        <button class="menu-btn" id="menuBtn" aria-label="Open Menu" aria-expanded="false"><i class="bi bi-list"></i></button>
-      </div>
-    </div>
-  </header>
+                @if(!empty($setting->logo_url))
+                    <img src="{{ $setting->logo_url }}"
+                         alt="{{ $setting->website_name ?? 'The Real Fragrance World' }} Logo"
+                         class="brand-logo" />
+                @else
+                    <img src="{{ asset('assets/img/logo.webp') }}"
+                         alt="{{ $setting->website_name ?? 'The Real Fragrance World' }} Logo"
+                         class="brand-logo" />
+                @endif
+
+                <span class="brand-copy">
+                    <strong>{{ $setting->website_name ?? 'The Real Fragrance World' }}</strong>
+
+                    @if(!empty($setting->website_tagline))
+                    @else
+                        <small>Zahid Tanwar</small>
+                    @endif
+                </span>
+            </a>
+
+            <nav class="navbar" id="navbar">
+                <a href="#home" class="active">Home</a>
+                <a href="#products">Products</a>
+                <a href="#categories">Categories</a>
+                <a href="#about">About</a>
+                <a href="#why">Why Choose Us</a>
+                <a href="#contact">Contact</a>
+            </nav>
+
+            <div class="header-actions">
+                @if(!empty($setting->whatsapp_number))
+                    <a href="https://wa.me/{{ $setting->whatsapp_number }}"
+                       class="btn btn-dark"
+                       target="_blank">
+                        <i class="bi bi-whatsapp"></i>
+                        Order Now
+                    </a>
+                @endif
+
+                <button class="menu-btn"
+                        id="menuBtn"
+                        aria-label="Open Menu"
+                        aria-expanded="false">
+                    <i class="bi bi-list"></i>
+                </button>
+            </div>
+
+        </div>
+    </header>
 
   <main>
     <section class="hero" id="home">
@@ -59,8 +125,21 @@
           <p class="hero-text reveal">Experience premium attars and perfumes crafted with elegance, depth and long-lasting aroma. Explore luxury fragrance blends inspired by oud, rose, musk, citrus and timeless oriental notes.</p>
           <div class="hero-actions reveal">
             <a href="#products" class="btn btn-dark"><i class="bi bi-bag-heart"></i> Explore Collection</a>
-            <a href="https://wa.me/918591114751" class="btn btn-light"><i class="bi bi-whatsapp"></i> Order on WhatsApp</a>
-          </div>
+@if(!empty($setting->whatsapp_number))
+    <a href="https://wa.me/{{ $setting->whatsapp_number }}"
+       class="btn btn-light"
+       target="_blank">
+        <i class="bi bi-whatsapp"></i>
+        Order on WhatsApp
+    </a>
+@else
+    <a href="https://wa.me/918591114751"
+       class="btn btn-light"
+       target="_blank">
+        <i class="bi bi-whatsapp"></i>
+        Order on WhatsApp
+    </a>
+@endif          </div>
           <div class="hero-stats reveal">
             <div><strong>20+</strong><span>Years Experience</span></div>
             <div><strong>COD</strong><span>Available in India</span></div>
@@ -68,19 +147,29 @@
           </div>
         </div>
 
-        <div class="hero-visual reveal">
-          <div class="gold-orb">
-            <div class="perfume-bottle"><span>THE REAL<br>FRAGRANCE<br>WORLD</span></div>
-          </div>
-          <div class="float-card float-card-one">
-            <i class="bi bi-flower1"></i>
-            <div><small>Signature Notes</small><strong>Oud • Rose • Musk</strong></div>
-          </div>
-          <div class="float-card float-card-two">
-            <i class="bi bi-gem"></i>
-            <div><small>Premium Feel</small><strong>Elegant Packaging</strong></div>
-          </div>
-        </div>
+       <div class="hero-visual reveal">
+  <div class="gold-orb">
+    <img src="assets/img/hero.png"
+         alt="The Real Fragrance World Perfume"
+         class="hero-perfume-img">
+  </div>
+
+  <div class="float-card float-card-one">
+    <i class="bi bi-flower1"></i>
+    <div>
+      <small>Signature Notes</small>
+      <strong>Oud • Rose • Musk</strong>
+    </div>
+  </div>
+
+  <div class="float-card float-card-two">
+    <i class="bi bi-gem"></i>
+    <div>
+      <small>Premium Feel</small>
+      <strong>Elegant Packaging</strong>
+    </div>
+  </div>
+</div>
       </div>
     </section>
 
@@ -517,8 +606,38 @@ if (productVideoModal) {
 
     <section class="section about" id="about">
       <div class="container about-grid">
-        <div class="about-visual reveal"><div class="about-card"><h3>A Luxury Fragrance Journey</h3><p>Built on experience, authenticity and a passion for rare aromas.</p></div><div class="experience-badge"><strong>20+</strong><span>Years<br>Experience</span></div></div>
-        <div class="about-content reveal"><span class="eyebrow"><i class="bi bi-award"></i> Brand Story</span><h2>Fragrance Craft Inspired by Elegance</h2><p>The Real Fragrance World brings rare, authentic and premium fragrances closer to fragrance lovers. The landing page highlights trust, premium presentation, WhatsApp ordering and wholesale enquiry conversion.</p><div class="about-points"><div><i class="bi bi-check-circle-fill"></i> Authentic fragrance selection</div><div><i class="bi bi-check-circle-fill"></i> Premium attars & perfumes</div><div><i class="bi bi-check-circle-fill"></i> COD and WhatsApp ordering</div><div><i class="bi bi-check-circle-fill"></i> Wholesale enquiries available</div></div><a href="https://wa.me/918591114751" class="btn btn-dark"><i class="bi bi-whatsapp"></i> Connect on WhatsApp</a></div>
+        <div class="about-visual reveal">
+    <div class="about-card">
+        <img src="assets/img/about-fragrance.png"
+             alt="Luxury Fragrance Journey"
+             class="about-card-img">
+
+        <div class="about-card-content">
+            <h3>A Luxury Fragrance Journey</h3>
+            <p>Built on experience, authenticity and a passion for rare aromas.</p>
+        </div>
+    </div>
+
+    <div class="experience-badge">
+        <strong>20+</strong>
+        <span>Years<br>Experience</span>
+    </div>
+</div>
+        <div class="about-content reveal">
+            <span class="eyebrow">
+                <i class="bi bi-award"></i> Brand Story</span>
+                <h2>Fragrance Craft Inspired by Elegance</h2>
+                <p>The Real Fragrance World brings rare, authentic and premium fragrances closer to fragrance lovers. The landing page highlights trust, premium presentation, WhatsApp ordering and wholesale enquiry conversion.</p>
+                <div class="about-points">
+                    <div>
+                        <i class="bi bi-check-circle-fill"></i> Authentic fragrance selection</div>
+                        <div><i class="bi bi-check-circle-fill"></i> Premium attars & perfumes</div>
+                        <div><i class="bi bi-check-circle-fill"></i> COD and WhatsApp ordering</div>
+                        <div><i class="bi bi-check-circle-fill"></i> Wholesale enquiries available</div>
+                    </div>
+                    <a href="https://wa.me/918591114751" class="btn btn-dark">
+                        <i class="bi bi-whatsapp"></i> Connect on WhatsApp</a>
+                </div>
       </div>
     </section>
 
@@ -541,38 +660,348 @@ if (productVideoModal) {
   
 
     <section class="section reviews">
-      <div class="container">
-        <div class="section-head reveal"><span class="eyebrow"><i class="bi bi-chat-heart"></i> Reviews</span><h2>What Customers Say</h2></div>
-        <div class="review-grid">
-          <div class="review-card reveal"><div class="stars">★★★★★</div><p>Premium fragrance quality and very easy WhatsApp ordering experience.</p><strong>Amaan Khan</strong><span>Oud Perfume</span></div>
-          <div class="review-card reveal"><div class="stars">★★★★★</div><p>Long lasting aroma and packaging feels very elegant for gifting.</p><strong>Riya Shah</strong><span>Turkish Rose Attar</span></div>
-          <div class="review-card reveal"><div class="stars">★★★★★</div><p>Discovery set helped me choose my favourite fragrance before buying.</p><strong>Sameer Ali</strong><span>Discovery Set</span></div>
+    <div class="container">
+        <div class="section-head reveal">
+            <span class="eyebrow">
+                <i class="bi bi-chat-heart"></i>
+                Reviews
+            </span>
+            <h2>What Customers Say</h2>
         </div>
-      </div>
-    </section>
 
-    <section class="section faq-contact" id="contact">
-      <div class="container faq-contact-grid">
-        <div class="faq-wrap reveal"><span class="eyebrow"><i class="bi bi-question-circle"></i> FAQ</span><h2>Quick Questions</h2><div class="faq-list"><div class="faq-item active"><button class="faq-q">Do you provide COD?<i class="bi bi-chevron-down"></i></button><div class="faq-a"><p>Yes, COD availability can be confirmed on WhatsApp before placing your order.</p></div></div><div class="faq-item"><button class="faq-q">How can I place an order?<i class="bi bi-chevron-down"></i></button><div class="faq-a"><p>Click any WhatsApp order button and send the product name to confirm price, delivery and stock.</p></div></div><div class="faq-item"><button class="faq-q">Are wholesale orders available?<i class="bi bi-chevron-down"></i></button><div class="faq-a"><p>Yes, wholesale and reseller enquiries can be handled directly on WhatsApp.</p></div></div><div class="faq-item"><button class="faq-q">Do you ship internationally?<i class="bi bi-chevron-down"></i></button><div class="faq-a"><p>International order enquiries are supported through WhatsApp discussion.</p></div></div></div></div>
-        <aside class="contact-card reveal"><h3>Contact & Order</h3><p>Connect for product orders, wholesale enquiries and international fragrance support.</p><div class="contact-list"><a href="https://wa.me/918591114751"><i class="bi bi-whatsapp"></i><span><small>WhatsApp</small><strong>+91 85911 14751</strong></span></a><a href="tel:+918591114751"><i class="bi bi-telephone"></i><span><small>Call</small><strong>+91 85911 14751</strong></span></a><a href="mailto:sales@therealfragranceworld.com"><i class="bi bi-envelope"></i><span><small>Email</small><strong>sales@therealfragranceworld.com</strong></span></a><div><i class="bi bi-geo-alt"></i><span><small>Office / Store</small><strong>Mumbai & Surat fragrance support</strong></span></div></div><a href="https://wa.me/918591114751" class="btn btn-dark"><i class="bi bi-whatsapp"></i> Order on WhatsApp</a></aside>
-      </div>
-    </section>
+        <div class="review-grid">
+            @forelse($testimonials as $testimonial)
+                <div class="review-card reveal">
+                    <div class="stars">
+                        @for($i = 1; $i <= 5; $i++)
+                            {{ $i <= $testimonial->rating ? '★' : '☆' }}
+                        @endfor
+                    </div>
+
+                    <p>{{ $testimonial->review_text }}</p>
+
+                    <strong>{{ $testimonial->customer_name }}</strong>
+
+                    <span>{{ $testimonial->product_name }}</span>
+                </div>
+            @empty
+                <div class="review-card reveal">
+                    <div class="stars">★★★★★</div>
+                    <p>No reviews available right now.</p>
+                    <strong>The Real Fragrance World</strong>
+                    <span>Customer Reviews</span>
+                </div>
+            @endforelse
+        </div>
+    </div>
+</section>
+
+   <section class="section faq-contact" id="contact">
+    <div class="container faq-contact-grid">
+
+        <div class="faq-wrap reveal">
+            <span class="eyebrow">
+                <i class="bi bi-question-circle"></i>
+                FAQ
+            </span>
+
+            <h2>Quick Questions</h2>
+
+            <div class="faq-list">
+
+                <div class="faq-item active">
+                    <button class="faq-q">
+                        Do you provide COD?
+                        <i class="bi bi-chevron-down"></i>
+                    </button>
+
+                    <div class="faq-a">
+                        <p>Yes, COD availability can be confirmed on WhatsApp before placing your order.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-q">
+                        How can I place an order?
+                        <i class="bi bi-chevron-down"></i>
+                    </button>
+
+                    <div class="faq-a">
+                        <p>Click any WhatsApp order button and send the product name to confirm price, delivery and stock.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-q">
+                        Are wholesale orders available?
+                        <i class="bi bi-chevron-down"></i>
+                    </button>
+
+                    <div class="faq-a">
+                        <p>Yes, wholesale and reseller enquiries can be handled directly on WhatsApp.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-q">
+                        Do you ship internationally?
+                        <i class="bi bi-chevron-down"></i>
+                    </button>
+
+                    <div class="faq-a">
+                        <p>International order enquiries are supported through WhatsApp discussion.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <aside class="contact-card reveal">
+            <h3>Contact & Order</h3>
+
+            <p>
+                Connect for product orders, wholesale enquiries and international fragrance support.
+            </p>
+
+            <div class="contact-list">
+
+                @if(!empty($setting->whatsapp_number))
+                    <a href="https://wa.me/{{ $setting->whatsapp_number }}" target="_blank">
+                        <i class="bi bi-whatsapp"></i>
+                        <span>
+                            <small>WhatsApp</small>
+                            <strong>{{ $setting->primary_phone ?? $setting->whatsapp_number }}</strong>
+                        </span>
+                    </a>
+                @endif
+
+                @if(!empty($setting->primary_phone))
+                    <a href="tel:{{ preg_replace('/[^0-9+]/', '', $setting->primary_phone) }}">
+                        <i class="bi bi-telephone"></i>
+                        <span>
+                            <small>Call</small>
+                            <strong>{{ $setting->primary_phone }}</strong>
+                        </span>
+                    </a>
+                @endif
+
+                @if(!empty($setting->email_address))
+                    <a href="mailto:{{ $setting->email_address }}">
+                        <i class="bi bi-envelope"></i>
+                        <span>
+                            <small>Email</small>
+                            <strong>{{ $setting->email_address }}</strong>
+                        </span>
+                    </a>
+                @endif
+
+                @if(!empty($setting->office_address) || !empty($setting->store_address))
+                    <div>
+                        <i class="bi bi-geo-alt"></i>
+                        <span>
+                            <small>Office / Store</small>
+                            <strong>
+                                @if(!empty($setting->office_address))
+                                    {{ $setting->office_address }}
+                                @endif
+
+                                @if(!empty($setting->office_address) && !empty($setting->store_address))
+                                    <br>
+                                @endif
+
+                                @if(!empty($setting->store_address))
+                                    {{ $setting->store_address }}
+                                @endif
+                            </strong>
+                        </span>
+                    </div>
+                @endif
+
+                @if(!empty($setting->business_hours))
+                    <div>
+                        <i class="bi bi-clock"></i>
+                        <span>
+                            <small>Business Hours</small>
+                            <strong>{{ $setting->business_hours }}</strong>
+                        </span>
+                    </div>
+                @endif
+
+            </div>
+
+            @if(!empty($setting->whatsapp_number))
+                <a href="https://wa.me/{{ $setting->whatsapp_number }}"
+                   class="btn btn-dark"
+                   target="_blank">
+                    <i class="bi bi-whatsapp"></i>
+                    Order on WhatsApp
+                </a>
+            @endif
+        </aside>
+
+    </div>
+</section>
+
+<style>
+    .map-frame {
+    width: 100%;
+    height: 360px;
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: 0 24px 70px rgba(43, 27, 12, 0.10);
+}
+
+.map-frame iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+</style>
   </main>
 
-  <footer class="footer">
+ <footer class="footer">
     <div class="container">
-      <div class="footer-grid">
-        <div><img src="assets/img/logo.webp" alt="The Real Fragrance World" class="footer-logo"><p>Premium attars, luxury perfumes and discovery sets with elegant WhatsApp-first ordering experience.</p></div>
-        <div><h3>Links</h3><a href="#home">Home</a><a href="#products">Products</a><a href="#about">About</a><a href="#contact">Contact</a></div>
-        <div><h3>Categories</h3><a href="#products">Attars</a><a href="#products">Perfumes</a><a href="#products">Oud Collection</a><a href="#products">Discovery Sets</a></div>
-        <div><h3>Order</h3><p>WhatsApp: +91 85911 14751<br>Email: sales@therealfragranceworld.com</p></div>
-      </div>
-      <div class="footer-bottom"><span>© 2025 The Real Fragrance World. All Rights Reserved.</span><span>Premium Landing Page Design</span></div>
-    </div>
-  </footer>
+        <div class="footer-grid">
 
-  <a class="whatsapp-float" href="https://wa.me/918591114751" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
-  <div class="mobile-bottom-bar"><a href="https://wa.me/918591114751"><i class="bi bi-whatsapp"></i> WhatsApp</a><a href="tel:+918591114751"><i class="bi bi-telephone"></i> Contact</a></div>
-  <script src="assets/js/main.js"></script>
+            <div>
+                @if(!empty($setting) && $setting->footer_logo_url)
+                    <img src="{{ $setting->footer_logo_url }}"
+                         alt="{{ $setting->website_name ?? 'The Real Fragrance World' }}"
+                         class="footer-logo">
+                @elseif(!empty($setting) && $setting->logo_url)
+                    <img src="{{ $setting->logo_url }}"
+                         alt="{{ $setting->website_name ?? 'The Real Fragrance World' }}"
+                         class="footer-logo">
+                @else
+                    <img src="{{ asset('assets/img/logo.webp') }}"
+                         alt="{{ $setting->website_name ?? 'The Real Fragrance World' }}"
+                         class="footer-logo">
+                @endif
+
+                <p>
+                    {{ $setting->website_tagline ?? 'Premium attars, luxury perfumes and discovery sets with elegant WhatsApp-first ordering experience.' }}
+                </p>
+            </div>
+
+            <div>
+                <h3>Links</h3>
+                <a href="#home">Home</a>
+                <a href="#products">Products</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </div>
+
+            <div>
+                <h3>Categories</h3>
+                <a href="#products">Attars</a>
+                <a href="#products">Perfumes</a>
+                <a href="#products">Oud Collection</a>
+                <a href="#products">Discovery Sets</a>
+            </div>
+
+            <div>
+                <h3>Order</h3>
+
+                <p>
+                    @if(!empty($setting->primary_phone))
+                        Phone: {{ $setting->primary_phone }}<br>
+                    @endif
+
+                    @if(!empty($setting->whatsapp_number))
+                        WhatsApp: {{ $setting->primary_phone ?? $setting->whatsapp_number }}<br>
+                    @endif
+
+                    @if(!empty($setting->email_address))
+                        Email: {{ $setting->email_address }}
+                    @endif
+                </p>
+
+                <div class="footer-social">
+                    @if(!empty($setting->facebook_url))
+                        <a href="{{ $setting->facebook_url }}" target="_blank" aria-label="Facebook">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+                    @endif
+
+                    @if(!empty($setting->instagram_url))
+                        <a href="{{ $setting->instagram_url }}" target="_blank" aria-label="Instagram">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                    @endif
+
+                    @if(!empty($setting->youtube_url))
+                        <a href="{{ $setting->youtube_url }}" target="_blank" aria-label="YouTube">
+                            <i class="bi bi-youtube"></i>
+                        </a>
+                    @endif
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <span>
+                {{ $setting->copyright_text ?? '© 2025 The Real Fragrance World. All Rights Reserved.' }}
+            </span>
+
+            <span>
+                {{ $setting->developer_credit ?? 'Premium Landing Page Design' }}
+            </span>
+        </div>
+    </div>
+</footer>
+
+@if(!empty($setting->whatsapp_number))
+    <a class="whatsapp-float"
+       href="https://wa.me/{{ $setting->whatsapp_number }}"
+       aria-label="WhatsApp"
+       target="_blank">
+        <i class="bi bi-whatsapp"></i>
+    </a>
+@endif
+
+<div class="mobile-bottom-bar">
+    @if(!empty($setting->whatsapp_number))
+        <a href="https://wa.me/{{ $setting->whatsapp_number }}" target="_blank">
+            <i class="bi bi-whatsapp"></i>
+            WhatsApp
+        </a>
+    @endif
+
+    @if(!empty($setting->primary_phone))
+        <a href="tel:{{ preg_replace('/[^0-9+]/', '', $setting->primary_phone) }}">
+            <i class="bi bi-telephone"></i>
+            Contact
+        </a>
+    @endif
+</div>
+
+<script src="{{ asset('assets/js/main.js') }}"></script>
 </body>
 </html>
+
+<style>
+    .footer-social {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.footer-social a {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: rgba(184, 135, 24, 0.14);
+    color: #d9b45c;
+    transition: all 0.3s ease;
+}
+
+.footer-social a:hover {
+    background: #b88718;
+    color: #ffffff;
+    transform: translateY(-3px);
+}
+</style>

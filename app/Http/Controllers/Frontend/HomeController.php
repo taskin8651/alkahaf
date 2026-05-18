@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\Testimonial;
+use App\Models\WebsiteSetting;
 
 class HomeController extends Controller
 {
@@ -22,6 +24,18 @@ class HomeController extends Controller
             ->latest()
             ->get();
 
-        return view('frontend.index', compact('products', 'videoProducts'));
+        $testimonials = Testimonial::where('status', 1)
+            ->orderBy('sort_order', 'asc')
+            ->latest()
+            ->get();
+
+        $setting = WebsiteSetting::first();
+
+        return view('frontend.index', compact(
+            'products',
+            'videoProducts',
+            'testimonials',
+            'setting'
+        ));
     }
 }
