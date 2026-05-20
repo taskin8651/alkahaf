@@ -1,113 +1,113 @@
 @extends('layouts.app')
 @section('content')
 
-<div class="min-h-screen flex items-center justify-center bg-gray-100 px-4">
+<main class="auth-page">
+    <div class="auth-bg-glow"></div>
 
-    <div class="w-full max-w-md bg-white border border-gray-200 rounded-lg shadow-sm">
+    <section class="auth-shell auth-shell-single">
+        <div class="auth-card">
 
         {{-- HEADER --}}
-        <div class="px-8 pt-8 pb-4 text-center">
-            <h1 class="text-2xl font-semibold text-gray-900">
+        <div class="auth-card-head">
+            <span>{{ trans('global.register') }}</span>
+            <h2>
                 {{ trans('panel.site_title') }}
-            </h1>
-            <p class="text-sm text-gray-500 mt-1">
-                {{ trans('global.register') }}
-            </p>
+            </h2>
+            <p>Create your account to continue.</p>
         </div>
 
         {{-- FORM --}}
-        <form method="POST" action="{{ route('register') }}" class="px-8 pb-8 space-y-5">
+        <form method="POST" action="{{ route('register') }}" class="auth-form">
             @csrf
 
             {{-- NAME --}}
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">
+            <div class="auth-field">
+                <label>
                     {{ trans('global.user_name') }}
                 </label>
-                <input type="text"
-                       name="name"
-                       value="{{ old('name') }}"
-                       required
-                       autofocus
-                       class="w-full px-3 py-2 border rounded-md text-sm
-                              focus:ring-2 focus:ring-blue-500 focus:border-blue-500
-                              {{ $errors->has('name') ? 'border-red-500' : 'border-gray-300' }}">
+                <div class="auth-input-wrap">
+                    <i class="fa fa-user"></i>
+                    <input type="text"
+                           name="name"
+                           value="{{ old('name') }}"
+                           required
+                           autofocus
+                           class="{{ $errors->has('name') ? 'is-invalid' : '' }}">
+                </div>
                 @if($errors->has('name'))
-                    <p class="mt-1 text-xs text-red-600">
+                    <p class="auth-error">
                         {{ $errors->first('name') }}
                     </p>
                 @endif
             </div>
 
             {{-- EMAIL --}}
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">
+            <div class="auth-field">
+                <label>
                     {{ trans('global.login_email') }}
                 </label>
-                <input type="email"
-                       name="email"
-                       value="{{ old('email') }}"
-                       required
-                       class="w-full px-3 py-2 border rounded-md text-sm
-                              focus:ring-2 focus:ring-blue-500 focus:border-blue-500
-                              {{ $errors->has('email') ? 'border-red-500' : 'border-gray-300' }}">
+                <div class="auth-input-wrap">
+                    <i class="fa fa-envelope"></i>
+                    <input type="email"
+                           name="email"
+                           value="{{ old('email') }}"
+                           required
+                           class="{{ $errors->has('email') ? 'is-invalid' : '' }}">
+                </div>
                 @if($errors->has('email'))
-                    <p class="mt-1 text-xs text-red-600">
+                    <p class="auth-error">
                         {{ $errors->first('email') }}
                     </p>
                 @endif
             </div>
 
             {{-- PASSWORD --}}
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">
+            <div class="auth-field">
+                <label>
                     {{ trans('global.login_password') }}
                 </label>
-                <input type="password"
-                       name="password"
-                       required
-                       class="w-full px-3 py-2 border rounded-md text-sm
-                              focus:ring-2 focus:ring-blue-500 focus:border-blue-500
-                              {{ $errors->has('password') ? 'border-red-500' : 'border-gray-300' }}">
+                <div class="auth-input-wrap">
+                    <i class="fa fa-lock"></i>
+                    <input type="password"
+                           name="password"
+                           required
+                           class="{{ $errors->has('password') ? 'is-invalid' : '' }}">
+                </div>
                 @if($errors->has('password'))
-                    <p class="mt-1 text-xs text-red-600">
+                    <p class="auth-error">
                         {{ $errors->first('password') }}
                     </p>
                 @endif
             </div>
 
             {{-- CONFIRM PASSWORD --}}
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">
+            <div class="auth-field">
+                <label>
                     {{ trans('global.login_password_confirmation') }}
                 </label>
-                <input type="password"
-                       name="password_confirmation"
-                       required
-                       class="w-full px-3 py-2 border rounded-md text-sm
-                              focus:ring-2 focus:ring-blue-500 focus:border-blue-500
-                              border-gray-300">
+                <div class="auth-input-wrap">
+                    <i class="fa fa-lock"></i>
+                    <input type="password"
+                           name="password_confirmation"
+                           required>
+                </div>
             </div>
 
             {{-- ACTION --}}
-            <div class="pt-2">
-                <button type="submit"
-                        class="w-full py-2.5 bg-blue-600 text-white text-sm font-medium
-                               rounded-md hover:bg-blue-700 transition">
-                    {{ trans('global.register') }}
-                </button>
-            </div>
+            <button type="submit" class="btn btn-dark auth-submit">
+                {{ trans('global.register') }}
+            </button>
 
             {{-- LOGIN LINK --}}
-            <div class="text-center pt-2">
-                <a href="{{ route('login') }}"
-                   class="text-sm text-blue-600 hover:underline">
+            <div class="auth-footer-link">
+                <a href="{{ route('login') }}" class="auth-link">
                     Already have an account? Login
                 </a>
             </div>
 
         </form>
     </div>
-</div>
+    </section>
+</main>
 
 @endsection

@@ -157,19 +157,19 @@
         {{-- Sidebar Style --}}
         <p style="font-size: 12px; font-weight: 700; color: #6B7280; text-transform: uppercase; letter-spacing: .06em; margin: 0 0 10px;">Background Style</p>
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 1.5rem;">
-            <button onclick="setBg('bg-gray-100')" id="bg-gray" class="theme-bg-btn active-bg"
+            <button onclick="setBg('theme-gray')" id="bg-gray" class="theme-bg-btn active-bg"
                 style="padding: 8px; border-radius: 8px; border: 2px solid var(--accent); background: #F3F4F6; font-size: 12px; font-weight: 600; cursor:pointer; color: #374151;">
                 ☁ Light Gray
             </button>
-            <button onclick="setBg('bg-white')" id="bg-white"
+            <button onclick="setBg('theme-white')" id="bg-white"
                 style="padding: 8px; border-radius: 8px; border: 2px solid #E5E7EB; background: #fff; font-size: 12px; font-weight: 600; cursor:pointer; color: #374151;">
                 ◻ White
             </button>
-            <button onclick="setBg('bg-slate-800')" id="bg-dark"
+            <button onclick="setBg('theme-dark')" id="bg-dark"
                 style="padding: 8px; border-radius: 8px; border: 2px solid #E5E7EB; background: #1E293B; font-size: 12px; font-weight: 600; cursor:pointer; color: #fff;">
                 ◾ Dark
             </button>
-            <button onclick="setBg('bg-blue-50')" id="bg-blue"
+            <button onclick="setBg('theme-blue')" id="bg-blue"
                 style="padding: 8px; border-radius: 8px; border: 2px solid #E5E7EB; background: #EFF6FF; font-size: 12px; font-weight: 600; cursor:pointer; color: #1D4ED8;">
                 💧 Blue Tint
             </button>
@@ -579,12 +579,14 @@ function updateChartColors(color) {
 }
 
 const bgMap = {
-    'bg-gray-100': '#F3F4F6', 'bg-white': '#FFFFFF',
-    'bg-slate-800': '#1E293B', 'bg-blue-50': '#EFF6FF'
+    'theme-gray': '#F3F4F6',
+    'theme-white': '#FFFFFF',
+    'theme-dark': '#1E293B',
+    'theme-blue': '#EFF6FF'
 };
 
 function setBg(cls) {
-    const mainEl = document.querySelector('body > .flex.min-h-screen > .flex-1');
+    const mainEl = document.querySelector('.admin-main');
     if (mainEl) {
         const color = bgMap[cls] || '#F3F4F6';
         mainEl.style.background = color;
@@ -592,7 +594,13 @@ function setBg(cls) {
     document.querySelectorAll('.theme-bg-btn').forEach(b => {
         b.style.borderColor = '#E5E7EB';
     });
-    const btn = document.getElementById('bg-' + cls.replace('bg-','').replace('-100','').replace('-800','dark').replace('-50','blue'));
+    const btnId = {
+        'theme-gray': 'bg-gray',
+        'theme-white': 'bg-white',
+        'theme-dark': 'bg-dark',
+        'theme-blue': 'bg-blue'
+    }[cls];
+    const btn = document.getElementById(btnId);
     if (btn) btn.style.borderColor = 'var(--accent)';
     localStorage.setItem('dash_bg', cls);
 }

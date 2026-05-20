@@ -1,106 +1,146 @@
-@extends('layouts.app')
-@section('content')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ trans('global.login') }} | {{ trans('panel.site_title') }}</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
-<div class="min-h-screen flex items-center justify-center bg-gray-100 px-4">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
 
-    <div class="w-full max-w-md bg-white border border-gray-200 rounded-lg shadow-sm">
+</head>
+<body>
+ 
 
-        {{-- HEADER --}}
-        <div class="px-8 pt-8 pb-4 text-center">
-            <h1 class="text-2xl font-semibold text-gray-900">
-                {{ trans('panel.site_title') }}
-            </h1>
-            <p class="text-sm text-gray-500 mt-1">
-                {{ trans('global.login') }}
+<main class="auth-page">
+    <div class="auth-bg-glow"></div>
+
+    <section class="auth-shell">
+        <div class="auth-brand-panel">
+            <a href="{{ route('home') }}" class="auth-brand">
+                <img src="{{ asset('assets/img/logo.webp') }}"
+                     alt="{{ trans('panel.site_title') }} Logo"
+                     class="auth-logo">
+                <span>
+                    <strong>{{ trans('panel.site_title') }}</strong>
+                    <small>Premium Fragrance World</small>
+                </span>
+            </a>
+
+            <span class="eyebrow auth-eyebrow">
+                <i class="bi bi-stars"></i>
+                Welcome Back
+            </span>
+
+            <h1>Sign in to your fragrance dashboard</h1>
+            <p>
+                Manage products, reviews and website settings with the same luxury feel as the frontend.
             </p>
+
+            <div class="auth-points">
+                <span><i class="bi bi-shield-check"></i> Secure access</span>
+                <span><i class="bi bi-bag-heart"></i> Product management</span>
+                <span><i class="bi bi-gem"></i> Premium brand control</span>
+            </div>
         </div>
+
+        <div class="auth-card">
+            <div class="auth-card-head">
+                <span>{{ trans('global.login') }}</span>
+                <h2>{{ trans('panel.site_title') }}</h2>
+                <p>Enter your credentials to continue.</p>
+            </div>
 
         {{-- INFO MESSAGE --}}
         @if(session('message'))
-            <div class="mx-8 mb-4 px-4 py-2 text-sm rounded-md
-                        bg-blue-50 text-blue-700 border border-blue-200">
+            <div class="auth-message">
                 {{ session('message') }}
             </div>
         @endif
 
         {{-- FORM --}}
-        <form method="POST" action="{{ route('login') }}" class="px-8 pb-8 space-y-5">
+        <form method="POST" action="{{ route('login') }}" class="auth-form">
             @csrf
 
             {{-- EMAIL --}}
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">
+            <div class="auth-field">
+                <label>
                     {{ trans('global.login_email') }}
                 </label>
-                <input type="email"
-                       name="email"
-                       value="{{ old('email') }}"
-                       required
-                       autofocus
-                       class="w-full px-3 py-2 border rounded-md text-sm
-                              focus:ring-2 focus:ring-blue-500 focus:border-blue-500
-                              {{ $errors->has('email') ? 'border-red-500' : 'border-gray-300' }}">
+                <div class="auth-input-wrap">
+                    <i class="bi bi-envelope"></i>
+                    <input type="email"
+                           name="email"
+                           value="{{ old('email') }}"
+                           required
+                           autofocus
+                           class="{{ $errors->has('email') ? 'is-invalid' : '' }}">
+                </div>
                 @if($errors->has('email'))
-                    <p class="mt-1 text-xs text-red-600">
+                    <p class="auth-error">
                         {{ $errors->first('email') }}
                     </p>
                 @endif
             </div>
 
             {{-- PASSWORD --}}
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">
+            <div class="auth-field">
+                <label>
                     {{ trans('global.login_password') }}
                 </label>
-                <input type="password"
-                       name="password"
-                       required
-                       class="w-full px-3 py-2 border rounded-md text-sm
-                              focus:ring-2 focus:ring-blue-500 focus:border-blue-500
-                              {{ $errors->has('password') ? 'border-red-500' : 'border-gray-300' }}">
+                <div class="auth-input-wrap">
+                    <i class="bi bi-lock"></i>
+                    <input type="password"
+                           name="password"
+                           required
+                           class="{{ $errors->has('password') ? 'is-invalid' : '' }}">
+                </div>
                 @if($errors->has('password'))
-                    <p class="mt-1 text-xs text-red-600">
+                    <p class="auth-error">
                         {{ $errors->first('password') }}
                     </p>
                 @endif
             </div>
 
             {{-- REMEMBER + FORGOT --}}
-            <div class="flex items-center justify-between">
-                <label class="flex items-center gap-2 text-sm text-gray-600">
-                    <input type="checkbox"
-                           name="remember"
-                           class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+            <div class="auth-row">
+                <label class="auth-check">
+                    <input type="checkbox" name="remember">
                     {{ trans('global.remember_me') }}
                 </label>
 
                 @if(Route::has('password.request'))
                     <a href="{{ route('password.request') }}"
-                       class="text-sm text-blue-600 hover:underline">
+                       class="auth-link">
                         {{ trans('global.forgot_password') }}
                     </a>
                 @endif
             </div>
 
             {{-- LOGIN BUTTON --}}
-            <div class="pt-2">
-                <button type="submit"
-                        class="w-full py-2.5 bg-blue-600 text-white text-sm font-medium
-                               rounded-md hover:bg-blue-700 transition">
-                    {{ trans('global.login') }}
-                </button>
-            </div>
+            <button type="submit" class="btn btn-dark auth-submit">
+                <i class="bi bi-box-arrow-in-right"></i>
+                {{ trans('global.login') }}
+            </button>
 
             {{-- REGISTER LINK --}}
-            <div class="text-center pt-2">
+            <div class="auth-footer-link">
                 <a href="{{ route('register') }}"
-                   class="text-sm text-blue-600 hover:underline">
+                   class="auth-link">
                     {{ trans('global.register') }}
                 </a>
             </div>
 
         </form>
     </div>
-</div>
+    </section>
+</main>
+<script src="{{ asset('assets/js/main.js') }}"></script>
 
-@endsection
+   
+</body>
+</html>
