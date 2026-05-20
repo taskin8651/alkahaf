@@ -143,7 +143,7 @@
 @endif          </div>
           <div class="hero-stats reveal">
             <div><strong>20+</strong><span>Years Experience</span></div>
-            <div><strong>COD</strong><span>Available in India</span></div>
+            <div><strong>COD</strong><span>Available in UAE</span></div>
             <div><strong>100%</strong><span>Premium Selection</span></div>
           </div>
         </div>
