@@ -13,7 +13,7 @@
         <h2 class="admin-page-title">Product Details</h2>
 
         <p class="admin-page-subtitle">
-            Full details for this fragrance product
+            Full details for this Al-Kahaf product
         </p>
     </div>
 

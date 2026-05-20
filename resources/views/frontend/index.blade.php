@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>{{ $setting->meta_title ?? 'The Real Fragrance World | Premium Attars & Perfumes' }}</title>
+    <title>{{ $setting->meta_title ?? 'Al-Kahaf | Premium Attars & Perfumes' }}</title>
 
     <meta name="description"
-          content="{{ $setting->meta_description ?? 'Luxury attars, perfumes, oud collection, discovery sets and WhatsApp ordering by The Real Fragrance World.' }}" />
+          content="{{ $setting->meta_description ?? 'Luxury attars, perfumes, oud collection, discovery sets and WhatsApp ordering by Al-Kahaf.' }}" />
 
     @if(!empty($setting->meta_keywords))
         <meta name="keywords" content="{{ $setting->meta_keywords }}">
@@ -63,20 +63,20 @@
     <header class="site-header" id="siteHeader">
         <div class="container header-inner">
 
-            <a href="#home" class="brand" aria-label="{{ $setting->website_name ?? 'The Real Fragrance World' }} Home">
+            <a href="#home" class="brand" aria-label="{{ $setting->website_name ?? 'Al-Kahaf' }} Home">
 
                 @if(!empty($setting->logo_url))
                     <img src="{{ $setting->logo_url }}"
-                         alt="{{ $setting->website_name ?? 'The Real Fragrance World' }} Logo"
+                         alt="{{ $setting->website_name ?? 'Al-Kahaf' }} Logo"
                          class="brand-logo" />
                 @else
                     <img src="{{ asset('assets/img/logo.webp') }}"
-                         alt="{{ $setting->website_name ?? 'The Real Fragrance World' }} Logo"
+                         alt="{{ $setting->website_name ?? 'Al-Kahaf' }} Logo"
                          class="brand-logo" />
                 @endif
 
                 <span class="brand-copy">
-                    <strong>{{ $setting->website_name ?? 'The Real Fragrance World' }}</strong>
+                    <strong>{{ $setting->website_name ?? 'Al-Kahaf' }}</strong>
 
                     @if(!empty($setting->website_tagline))
                     @else
@@ -120,9 +120,9 @@
       <div class="hero-bg-glow"></div>
       <div class="container hero-grid">
         <div class="hero-content">
-          <span class="eyebrow reveal"><i class="bi bi-stars"></i> Luxury Fragrances, Made Accessible</span>
-          <h1 class="reveal">Discover Rare & Authentic Fragrances</h1>
-          <p class="hero-text reveal">Experience premium attars and perfumes crafted with elegance, depth and long-lasting aroma. Explore luxury fragrance blends inspired by oud, rose, musk, citrus and timeless oriental notes.</p>
+          <span class="eyebrow reveal"><i class="bi bi-stars"></i> Al-Kahaf, Made Accessible</span>
+          <h1 class="reveal">Discover Rare & Authentic Al-Kahaf</h1>
+          <p class="hero-text reveal">Experience premium attars and perfumes crafted with elegance, depth and long-lasting aroma. Explore luxury Al-Kahaf blends inspired by oud, rose, musk, citrus and timeless oriental notes.</p>
           <div class="hero-actions reveal">
             <a href="#products" class="btn btn-dark"><i class="bi bi-bag-heart"></i> Explore Collection</a>
 @if(!empty($setting->whatsapp_number))
@@ -150,7 +150,7 @@
        <div class="hero-visual reveal">
   <div class="gold-orb">
     <img src="assets/img/hero.png"
-         alt="The Real Fragrance World Perfume"
+         alt="Al-Kahaf Perfume"
          class="hero-perfume-img">
   </div>
 
@@ -184,7 +184,7 @@
       <div class="container">
         <div class="section-head reveal">
           <span class="eyebrow"><i class="bi bi-bag-heart"></i> Signature Collection</span>
-          <h2>Our Premium Fragrance Collection</h2>
+          <h2>Our Premium Al-Kahaf Collection</h2>
           <p>Beautiful product cards for attars, perfumes and discovery sets with direct WhatsApp order conversion.</p>
         </div>
         <div class="product-grid">
@@ -592,11 +592,11 @@ if (productVideoModal) {
 
     <section class="section categories" id="categories">
       <div class="container">
-        <div class="section-head reveal"><span class="eyebrow"><i class="bi bi-grid"></i> Shop by Category</span><h2>Choose Your Fragrance Mood</h2></div>
+        <div class="section-head reveal"><span class="eyebrow"><i class="bi bi-grid"></i> Shop by Category</span><h2>Choose Your Al-Kahaf Mood</h2></div>
         <div class="category-grid">
-          <div class="category-card reveal"><i class="bi bi-droplet-half"></i><h3>Attars</h3><p>Oil based rich fragrances.</p></div>
+          <div class="category-card reveal"><i class="bi bi-droplet-half"></i><h3>Attars</h3><p>Oil based rich Al-Kahaf.</p></div>
           <div class="category-card reveal"><i class="bi bi-gem"></i><h3>Perfumes</h3><p>Luxury spray collection.</p></div>
-          <div class="category-card reveal"><i class="bi bi-tree"></i><h3>Oud</h3><p>Deep woody fragrance.</p></div>
+          <div class="category-card reveal"><i class="bi bi-tree"></i><h3>Oud</h3><p>Deep woody Al-Kahaf.</p></div>
           <div class="category-card reveal"><i class="bi bi-flower1"></i><h3>Floral</h3><p>Rose and soft notes.</p></div>
           <div class="category-card reveal"><i class="bi bi-box2-heart"></i><h3>Sets</h3><p>Discovery vial sets.</p></div>
           <div class="category-card reveal"><i class="bi bi-globe2"></i><h3>Wholesale</h3><p>Bulk order enquiries.</p></div>
@@ -609,11 +609,11 @@ if (productVideoModal) {
         <div class="about-visual reveal">
     <div class="about-card">
         <img src="assets/img/about-fragrance.png"
-             alt="Luxury Fragrance Journey"
+             alt="Luxury Al-Kahaf Journey"
              class="about-card-img">
 
         <div class="about-card-content">
-            <h3>A Luxury Fragrance Journey</h3>
+            <h3>A Luxury Al-Kahaf Journey</h3>
             <p>Built on experience, authenticity and a passion for rare aromas.</p>
         </div>
     </div>
@@ -626,11 +626,11 @@ if (productVideoModal) {
         <div class="about-content reveal">
             <span class="eyebrow">
                 <i class="bi bi-award"></i> Brand Story</span>
-                <h2>Fragrance Craft Inspired by Elegance</h2>
-                <p>The Real Fragrance World brings rare, authentic and premium fragrances closer to fragrance lovers. The landing page highlights trust, premium presentation, WhatsApp ordering and wholesale enquiry conversion.</p>
+                <h2>Al-Kahaf Craft Inspired by Elegance</h2>
+                <p>Al-Kahaf brings rare, authentic and premium products closer to customers. The landing page highlights trust, premium presentation, WhatsApp ordering and wholesale enquiry conversion.</p>
                 <div class="about-points">
                     <div>
-                        <i class="bi bi-check-circle-fill"></i> Authentic fragrance selection</div>
+                        <i class="bi bi-check-circle-fill"></i> Authentic Al-Kahaf selection</div>
                         <div><i class="bi bi-check-circle-fill"></i> Premium attars & perfumes</div>
                         <div><i class="bi bi-check-circle-fill"></i> COD and WhatsApp ordering</div>
                         <div><i class="bi bi-check-circle-fill"></i> Wholesale enquiries available</div>
@@ -645,12 +645,12 @@ if (productVideoModal) {
       <div class="container">
         <div class="section-head reveal"><span class="eyebrow"><i class="bi bi-shield-check"></i> Why Choose Us</span><h2>Premium Trust Points</h2></div>
         <div class="why-grid">
-          <div class="why-card reveal"><i class="bi bi-patch-check"></i><h3>Authentic Fragrances</h3><p>Carefully selected premium oils and blends with rich fragrance profiles.</p></div>
-          <div class="why-card reveal"><i class="bi bi-clock-history"></i><h3>Long Lasting Aroma</h3><p>Deep, elegant and memorable fragrance experience for daily and special use.</p></div>
+          <div class="why-card reveal"><i class="bi bi-patch-check"></i><h3>Authentic Al-Kahaf</h3><p>Carefully selected premium oils and blends with rich Al-Kahaf profiles.</p></div>
+          <div class="why-card reveal"><i class="bi bi-clock-history"></i><h3>Long Lasting Aroma</h3><p>Deep, elegant and memorable Al-Kahaf experience for daily and special use.</p></div>
           <div class="why-card reveal"><i class="bi bi-cash-coin"></i><h3>COD Available</h3><p>Easy ordering support with WhatsApp-based quick purchase flow.</p></div>
-          <div class="why-card reveal"><i class="bi bi-box-seam"></i><h3>Premium Packaging</h3><p>Elegant presentation ideal for gifting and personal fragrance collections.</p></div>
-          <div class="why-card reveal"><i class="bi bi-people"></i><h3>Wholesale Orders</h3><p>Bulk order support for resellers, distributors and fragrance businesses.</p></div>
-          <div class="why-card reveal"><i class="bi bi-globe2"></i><h3>International Enquiry</h3><p>Dedicated WhatsApp assistance for international fragrance orders.</p></div>
+          <div class="why-card reveal"><i class="bi bi-box-seam"></i><h3>Premium Packaging</h3><p>Elegant presentation ideal for gifting and personal Al-Kahaf collections.</p></div>
+          <div class="why-card reveal"><i class="bi bi-people"></i><h3>Wholesale Orders</h3><p>Bulk order support for resellers, distributors and Al-Kahaf businesses.</p></div>
+          <div class="why-card reveal"><i class="bi bi-globe2"></i><h3>International Enquiry</h3><p>Dedicated WhatsApp assistance for international Al-Kahaf orders.</p></div>
         </div>
       </div>
     </section>
@@ -688,7 +688,7 @@ if (productVideoModal) {
                 <div class="review-card reveal">
                     <div class="stars">★★★★★</div>
                     <p>No reviews available right now.</p>
-                    <strong>The Real Fragrance World</strong>
+                    <strong>Al-Kahaf</strong>
                     <span>Customer Reviews</span>
                 </div>
             @endforelse
@@ -760,7 +760,7 @@ if (productVideoModal) {
             <h3>Contact & Order</h3>
 
             <p>
-                Connect for product orders, wholesale enquiries and international fragrance support.
+                Connect for product orders, wholesale enquiries and international Al-Kahaf support.
             </p>
 
             <div class="contact-list">
@@ -866,15 +866,15 @@ if (productVideoModal) {
             <div>
                 @if(!empty($setting) && $setting->footer_logo_url)
                     <img src="{{ $setting->footer_logo_url }}"
-                         alt="{{ $setting->website_name ?? 'The Real Fragrance World' }}"
+                         alt="{{ $setting->website_name ?? 'Al-Kahaf' }}"
                          class="footer-logo">
                 @elseif(!empty($setting) && $setting->logo_url)
                     <img src="{{ $setting->logo_url }}"
-                         alt="{{ $setting->website_name ?? 'The Real Fragrance World' }}"
+                         alt="{{ $setting->website_name ?? 'Al-Kahaf' }}"
                          class="footer-logo">
                 @else
                     <img src="{{ asset('assets/img/logo.webp') }}"
-                         alt="{{ $setting->website_name ?? 'The Real Fragrance World' }}"
+                         alt="{{ $setting->website_name ?? 'Al-Kahaf' }}"
                          class="footer-logo">
                 @endif
 
@@ -941,7 +941,7 @@ if (productVideoModal) {
 
         <div class="footer-bottom">
             <span>
-                {{ $setting->copyright_text ?? '© 2025 The Real Fragrance World. All Rights Reserved.' }}
+                {{ $setting->copyright_text ?? '© 2025 Al-Kahaf. All Rights Reserved.' }}
             </span>
 
             <span>

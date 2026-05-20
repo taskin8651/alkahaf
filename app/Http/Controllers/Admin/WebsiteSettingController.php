@@ -13,19 +13,19 @@ class WebsiteSettingController extends Controller
         $setting = WebsiteSetting::firstOrCreate(
             ['id' => 1],
             [
-                'website_name'     => 'The Real Fragrance World',
-                'website_tagline'  => 'Luxury Fragrances, Made Accessible',
-                'copyright_text'   => '© 2025 The Real Fragrance World. All Rights Reserved.',
+                'website_name'     => 'Al-Kahaf',
+                'website_tagline'  => 'Al-Kahaf, Made Accessible',
+                'copyright_text'   => '© 2025 Al-Kahaf. All Rights Reserved.',
                 'developer_credit' => 'Website designed by 24siteshop',
-                'meta_title'       => 'The Real Fragrance World | Luxury Attars & Perfumes',
-                'meta_description' => 'Discover premium attars, perfumes and luxury fragrance collections.',
-                'meta_keywords'    => 'perfume, attar, oud, luxury fragrance',
-                'canonical_url'    => 'https://therealfragranceworld.com/',
+                'meta_title'       => 'Al-Kahaf | Luxury Attars & Perfumes',
+                'meta_description' => 'Discover premium attars, perfumes and luxury Al-Kahaf collections.',
+                'meta_keywords'    => 'perfume, attar, oud, luxury Al-Kahaf',
+                'canonical_url'    => 'https://alkahaf.com/',
                 'primary_phone'    => '+91 85911 14751',
                 'whatsapp_number'  => '918591114751',
-                'email_address'    => 'sales@therealfragranceworld.com',
+                'email_address'    => 'sales@alkahaf.com',
                 'office_address'   => 'Borivali West, Mumbai',
-                'store_address'    => 'Kahaf Luxury Fragrances, Surat',
+                'store_address'    => 'Al-Kahaf, Surat',
                 'business_hours'   => 'Mon - Sat, 10 AM - 8 PM',
             ]
         );

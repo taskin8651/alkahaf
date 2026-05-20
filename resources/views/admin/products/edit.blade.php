@@ -15,7 +15,7 @@
         </h2>
 
         <p class="admin-page-subtitle">
-            Update fragrance product details, media, price and visibility
+            Update Al-Kahaf product details, media, price and visibility
         </p>
     </div>
 

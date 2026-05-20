@@ -18,7 +18,7 @@
 
             <div>
                 <p class="form-card-title">Product Information</p>
-                <p class="form-card-subtitle">Basic fragrance product details</p>
+                <p class="form-card-subtitle">Basic Al-Kahaf product details</p>
             </div>
         </div>
 

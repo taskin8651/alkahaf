@@ -15,7 +15,7 @@
         </h2>
 
         <p class="admin-page-subtitle">
-            Create a fragrance product with image, video, pricing and display order
+            Create a Al-Kahaf product with image, video, pricing and display order
         </p>
     </div>
 </div>

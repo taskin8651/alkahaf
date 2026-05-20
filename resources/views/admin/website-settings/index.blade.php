@@ -54,7 +54,7 @@
                                name="website_name"
                                id="website_name"
                                value="{{ old('website_name', $setting->website_name ?? '') }}"
-                               placeholder="The Real Fragrance World"
+                               placeholder="Al-Kahaf"
                                class="field-input {{ $errors->has('website_name') ? 'error' : '' }}">
                     </div>
 
@@ -78,7 +78,7 @@
                                name="website_tagline"
                                id="website_tagline"
                                value="{{ old('website_tagline', $setting->website_tagline ?? '') }}"
-                               placeholder="Luxury Fragrances, Made Accessible"
+                               placeholder="Al-Kahaf, Made Accessible"
                                class="field-input {{ $errors->has('website_tagline') ? 'error' : '' }}">
                     </div>
 
@@ -102,7 +102,7 @@
                                name="copyright_text"
                                id="copyright_text"
                                value="{{ old('copyright_text', $setting->copyright_text ?? '') }}"
-                               placeholder="© 2025 The Real Fragrance World. All Rights Reserved."
+                               placeholder="© 2025 Al-Kahaf. All Rights Reserved."
                                class="field-input {{ $errors->has('copyright_text') ? 'error' : '' }}">
                     </div>
 
@@ -345,7 +345,7 @@
                             {{ $errors->first('meta_keywords') }}
                         </p>
                     @else
-                        <p class="field-hint">Example: perfume, attar, oud, luxury fragrance</p>
+                        <p class="field-hint">Example: perfume, attar, oud, luxury Al-Kahaf</p>
                     @endif
                 </div>
 

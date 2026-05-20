@@ -27,7 +27,7 @@
                      class="auth-logo">
                 <span>
                     <strong>{{ trans('panel.site_title') }}</strong>
-                    <small>Premium Fragrance World</small>
+                    <small>Al-Kahaf</small>
                 </span>
             </a>
 
@@ -36,7 +36,7 @@
                 Welcome Back
             </span>
 
-            <h1>Sign in to your fragrance dashboard</h1>
+            <h1>Sign in to your Al-Kahaf dashboard</h1>
             <p>
                 Manage products, reviews and website settings with the same luxury feel as the frontend.
             </p>

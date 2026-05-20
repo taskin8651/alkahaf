@@ -8,7 +8,7 @@
     <div>
         <h2 class="admin-page-title">Products</h2>
         <p class="admin-page-subtitle">
-            Manage fragrance products, media, pricing and visibility
+            Manage Al-Kahaf products, media, pricing and visibility
         </p>
     </div>
 
