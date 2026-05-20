@@ -22,7 +22,7 @@
     <section class="auth-shell">
         <div class="auth-brand-panel">
             <a href="{{ route('home') }}" class="auth-brand">
-                <img src="{{ asset('assets/img/logo.webp') }}"
+                <img src="{{ asset('assets/img/logo.png') }}"
                      alt="{{ trans('panel.site_title') }} Logo"
                      class="auth-logo">
                 <span>

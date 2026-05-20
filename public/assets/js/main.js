@@ -73,9 +73,22 @@ const customerCity = document.getElementById("customerCity");
 
 document.querySelectorAll(".open-order-form").forEach((button) => {
     button.addEventListener("click", function () {
+        const clickUrl = this.dataset.clickUrl || "";
         const productName = this.dataset.productName || "";
         const productSize = this.dataset.productSize || "";
         const whatsappNumber = this.dataset.whatsappNumber || "918591114751";
+
+        if (clickUrl) {
+            const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute("content") || "";
+
+            fetch(clickUrl, {
+                method: "POST",
+                headers: {
+                    "X-CSRF-TOKEN": csrfToken,
+                    "Accept": "application/json",
+                },
+            }).catch(() => {});
+        }
 
         orderProductName.value = productName;
         orderProductSize.value = productSize;

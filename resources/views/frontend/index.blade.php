@@ -8,6 +8,7 @@
 
     <meta name="description"
           content="{{ $setting->meta_description ?? 'Luxury attars, perfumes, oud collection, discovery sets and WhatsApp ordering by Al-Kahaf.' }}" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     @if(!empty($setting->meta_keywords))
         <meta name="keywords" content="{{ $setting->meta_keywords }}">
@@ -70,7 +71,7 @@
                          alt="{{ $setting->website_name ?? 'Al-Kahaf' }} Logo"
                          class="brand-logo" />
                 @else
-                    <img src="{{ asset('assets/img/logo.webp') }}"
+                    <img src="{{ asset('assets/img/logo.png') }}"
                          alt="{{ $setting->website_name ?? 'Al-Kahaf' }} Logo"
                          class="brand-logo" />
                 @endif
@@ -209,6 +210,7 @@
                 <button type="button"
                         class="product-video-play open-product-video"
                         data-video-url="{{ $product->video_url }}"
+                        data-click-url="{{ route('products.track-click', $product) }}"
                         data-product-name="{{ $product->name }}">
                     <i class="bi bi-play-fill"></i>
                 </button>
@@ -238,6 +240,8 @@
 
             <button type="button"
                     class="btn btn-dark open-order-form"
+                    data-product-id="{{ $product->id }}"
+                    data-click-url="{{ route('products.track-click', $product) }}"
                     data-product-name="{{ $product->name }}"
                     data-product-size="{{ $product->size }}"
                     data-product-price="{{ $product->sale_price }}"
@@ -463,8 +467,21 @@ document.querySelectorAll(".open-product-video").forEach((button) => {
     button.addEventListener("click", function () {
         const videoUrl = this.dataset.videoUrl;
         const productName = this.dataset.productName || "Product Video";
+        const clickUrl = this.dataset.clickUrl || "";
 
         if (!videoUrl) return;
+
+        if (clickUrl) {
+            const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute("content") || "";
+
+            fetch(clickUrl, {
+                method: "POST",
+                headers: {
+                    "X-CSRF-TOKEN": csrfToken,
+                    "Accept": "application/json",
+                },
+            }).catch(() => {});
+        }
 
         productVideoTitle.textContent = productName;
         productVideoPlayer.querySelector("source").src = videoUrl;
@@ -873,7 +890,7 @@ if (productVideoModal) {
                          alt="{{ $setting->website_name ?? 'Al-Kahaf' }}"
                          class="footer-logo">
                 @else
-                    <img src="{{ asset('assets/img/logo.webp') }}"
+                    <img src="{{ asset('assets/img/logo.png') }}"
                          alt="{{ $setting->website_name ?? 'Al-Kahaf' }}"
                          class="footer-logo">
                 @endif

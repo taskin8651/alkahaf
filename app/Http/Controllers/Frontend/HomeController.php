@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Testimonial;
 use App\Models\WebsiteSetting;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -37,5 +39,15 @@ class HomeController extends Controller
             'testimonials',
             'setting'
         ));
+    }
+
+    public function trackProductClick(Request $request, Product $product): JsonResponse
+    {
+        $product->increment('click_count');
+
+        return response()->json([
+            'success' => true,
+            'click_count' => $product->fresh()->click_count,
+        ]);
     }
 }

@@ -132,6 +132,9 @@ function initAdminCheckboxes() {
 
         item.classList.toggle('checked', checkbox.checked);
 
+        if (item.dataset.checkboxBound === 'true') return;
+        item.dataset.checkboxBound = 'true';
+
         item.addEventListener('click', function (event) {
             event.preventDefault();
 
@@ -141,6 +144,9 @@ function initAdminCheckboxes() {
     });
 
     document.querySelectorAll('[data-check-all]').forEach(button => {
+        if (button.dataset.checkAllBound === 'true') return;
+        button.dataset.checkAllBound = 'true';
+
         button.addEventListener('click', function () {
             const target = this.getAttribute('data-check-all') || '.role-checkbox-item';
 
@@ -156,6 +162,9 @@ function initAdminCheckboxes() {
     });
 
     document.querySelectorAll('[data-uncheck-all]').forEach(button => {
+        if (button.dataset.uncheckAllBound === 'true') return;
+        button.dataset.uncheckAllBound = 'true';
+
         button.addEventListener('click', function () {
             const target = this.getAttribute('data-uncheck-all') || '.role-checkbox-item';
 

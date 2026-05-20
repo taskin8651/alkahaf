@@ -24,12 +24,14 @@ class Product extends Model implements HasMedia
         'sale_price',
         'sort_order',
         'status',
+        'click_count',
     ];
 
     protected $casts = [
         'old_price' => 'decimal:2',
         'sale_price' => 'decimal:2',
         'status' => 'boolean',
+        'click_count' => 'integer',
     ];
 
     protected static function booted(): void
